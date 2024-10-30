@@ -26,8 +26,8 @@ func main() {
 
 	file_name := args[args_len-1]
 
-	for count := 0; count <= args_len-1; count++ {
-		action := cli_values[args[count]]
+  for _, value := range args {
+    action := cli_values[value]
 
 		execute_all := args_len-1 == 0
 
