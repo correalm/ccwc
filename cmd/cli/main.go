@@ -20,6 +20,7 @@ func main() {
   cmds := []interfaces.Command{
     command.NewCountLines(filename),
     command.NewCountWords(filename),
+    command.NewByteCounter(filename),
   }
 
   parser := command.NewParser(cmds)
