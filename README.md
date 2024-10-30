@@ -2,9 +2,21 @@
 
 ### The goal is learn Go. The code is bad, for now.
 
-> How run? `go run main.go [args] filename` (I now this is bad, but it will get better)
+### Build
+`go build -o ccwc cmd/cli/main.go`
+
+### Usage
+  - Get all results (number of lines, words and bytes)
+    `ccwc file_path`
+  - Words
+    `ccwc -w file_path`
+  - Lines
+    `ccwc -l file_path`
+  - Bytes
+    `ccwc -b file_path`
+  - Mix
+    `ccwc -l -w file_path`
 
 ### TODOS:
     - Testing
-    - Split functions
     - Maybe use goroutines to improve the performance
