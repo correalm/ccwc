@@ -1,4 +1,4 @@
-### This is a implementation of (`wc Coding Challenge`)[https://codingchallenges.fyi/challenges/challenge-wc]
+### This is a implementation of [`wc Coding Challenge`](https://codingchallenges.fyi/challenges/challenge-wc)
 
 ### The goal is learn Go. The code is bad, for now.
 
