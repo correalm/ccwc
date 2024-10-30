@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 const (
@@ -14,9 +15,9 @@ const (
 
 func main() {
 	cli_values := map[string]string{
-		"-c": SCAN_BYTES,
-		"-l": SCAN_LINES,
-		"-w": SCAN_WORDS,
+		"c": SCAN_BYTES,
+		"l": SCAN_LINES,
+		"w": SCAN_WORDS,
 	}
 
 	line_counter, byte_couter, word_counter := 0, 0, 0
@@ -26,21 +27,20 @@ func main() {
 
 	file_name := args[args_len-1]
 
-  for _, value := range args {
-    action := cli_values[value]
-
-		execute_all := args_len-1 == 0
-
-		if action == SCAN_BYTES || execute_all {
-			byte_couter = count_bytes(file_name)
-		}
-
-		if action == SCAN_LINES || execute_all {
-			line_counter = count_lines(file_name)
-		}
-
-		if action == SCAN_WORDS || execute_all {
-			word_counter = count_words(file_name)
+	if args_len-1 == 0 {
+		byte_couter = count_bytes(file_name)
+		line_counter = count_lines(file_name)
+		word_counter = count_words(file_name)
+	} else {
+		for _, arg := range args {
+			switch action := cli_values[strings.Trim(arg, "-")]; action {
+			case SCAN_BYTES:
+				byte_couter = count_bytes(file_name)
+			case SCAN_LINES:
+				line_counter = count_lines(file_name)
+			case SCAN_WORDS:
+				word_counter = count_words(file_name)
+			}
 		}
 	}
 
