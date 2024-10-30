@@ -2,9 +2,9 @@ package command
 
 import (
 	"bufio"
+	"ccwc/services"
 	"flag"
 	"fmt"
-	"os"
 )
 
 type WordCounter struct {
@@ -32,17 +32,5 @@ func (cmd *WordCounter) ParseFlags(flags []string) error {
 }
 
 func (cmd *WordCounter) Run() error {
-	file, err := os.Open(cmd.filename)
-	defer file.Close()
-
-	if err != nil { return err }
-
-  scanner := bufio.NewScanner(file)
-
-  scanner.Split(bufio.ScanWords)
-  counter := 0
-
-  for scanner.Scan() { counter++ }
-  fmt.Println("Words:", counter)
-  return err
+  return services.Counter(cmd.filename, "Words:", bufio.ScanWords)
 }

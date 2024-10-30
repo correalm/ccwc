@@ -2,9 +2,9 @@ package command
 
 import (
 	"bufio"
+	"ccwc/services"
 	"flag"
 	"fmt"
-	"os"
 )
 
 type LineCounter struct {
@@ -32,15 +32,5 @@ func (cmd *LineCounter) ParseFlags(flags []string) error {
 }
 
 func (cmd *LineCounter) Run() error {
-	file, err := os.Open(cmd.filename)
-	defer file.Close()
-
-	if err != nil { return err }
-
-  scanner := bufio.NewScanner(file)
-  counter := 0
-
-  for scanner.Scan() { counter++ }
-  fmt.Println("Lines:", counter)
-  return err
+  return services.Counter(cmd.filename, "Lines:", bufio.ScanLines)
 }

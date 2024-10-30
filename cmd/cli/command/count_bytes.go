@@ -1,10 +1,10 @@
 package command
 
 import (
+  "ccwc/services"
 	"bufio"
 	"flag"
 	"fmt"
-	"os"
 )
 
 type ByteCounter struct {
@@ -32,17 +32,5 @@ func (cmd *ByteCounter) ParseFlags(flags []string) error {
 }
 
 func (cmd *ByteCounter) Run() error {
-	file, err := os.Open(cmd.filename)
-	defer file.Close()
-
-	if err != nil { return err }
-
-  scanner := bufio.NewScanner(file)
-  scanner.Split(bufio.ScanBytes)
-
-  counter := 0
-
-  for scanner.Scan() { counter++ }
-  fmt.Println("Bytes:", counter)
-  return err
+  return services.Counter(cmd.filename, "Bytes:", bufio.ScanBytes)
 }
