@@ -7,94 +7,106 @@ import (
 )
 
 const (
-  SCAN_BYTES string = "bytes"
-  SCAN_LINES = "lines"
-  SCAN_WORDS = "words"
+	SCAN_BYTES string = "bytes"
+	SCAN_LINES        = "lines"
+	SCAN_WORDS        = "words"
 )
 
 func main() {
-  cli_values := map[string]string{
-    "-c": SCAN_BYTES,
-    "-l": SCAN_LINES,
-    "-w": SCAN_WORDS,
-  }
+	cli_values := map[string]string{
+		"-c": SCAN_BYTES,
+		"-l": SCAN_LINES,
+		"-w": SCAN_WORDS,
+	}
 
-  line_counter, byte_couter, word_counter := 0, 0, 0
+	line_counter, byte_couter, word_counter := 0, 0, 0
 
-  args := os.Args[1:]
-  args_len := len(args)
+	args := os.Args[1:]
+	args_len := len(args)
 
-  file_name := args[args_len - 1]
+	file_name := args[args_len-1]
 
-  for count := 0; count <= args_len - 1; count++ {
-    action := cli_values[args[count]]
+	for count := 0; count <= args_len-1; count++ {
+		action := cli_values[args[count]]
 
-    execute_all := args_len - 1 == 0
+		execute_all := args_len-1 == 0
 
-    if action == SCAN_BYTES || execute_all {
-      byte_couter = count_bytes(file_name)
-    }
+		if action == SCAN_BYTES || execute_all {
+			byte_couter = count_bytes(file_name)
+		}
 
-    if action == SCAN_LINES || execute_all {
-      line_counter = count_lines(file_name)
-    }
+		if action == SCAN_LINES || execute_all {
+			line_counter = count_lines(file_name)
+		}
 
-    if action == SCAN_WORDS || execute_all {
-      word_counter = count_words(file_name)
-    }
-  }
+		if action == SCAN_WORDS || execute_all {
+			word_counter = count_words(file_name)
+		}
+	}
 
-  fmt.Println("ARGS: ", line_counter, byte_couter, word_counter)
+	fmt.Println("ARGS: ", line_counter, byte_couter, word_counter)
 }
 
-func count_lines(file_name string) (int) {
-  file, err := os.Open(file_name)
+func count_lines(file_name string) int {
+	file, err := os.Open(file_name)
 
-  if err != nil { panic(err) }
+	if err != nil {
+		panic(err)
+	}
 
-  defer file.Close()
+	defer file.Close()
 
-  scanner := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(file)
 
-  counter := 0
+	counter := 0
 
-  scanner.Split(bufio.ScanLines)
+	scanner.Split(bufio.ScanLines)
 
-  for scanner.Scan() { counter++ }
+	for scanner.Scan() {
+		counter++
+	}
 
-  return counter
+	return counter
 }
 
-func count_bytes(file_name string) (int) {
-  file, err := os.Open(file_name)
+func count_bytes(file_name string) int {
+	file, err := os.Open(file_name)
 
-  if err != nil { panic(err) }
+	if err != nil {
+		panic(err)
+	}
 
-  defer file.Close()
-  scanner := bufio.NewScanner(file)
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
 
-  counter := 0
+	counter := 0
 
-  scanner.Split(bufio.ScanBytes)
+	scanner.Split(bufio.ScanBytes)
 
-  for scanner.Scan() { counter++ }
+	for scanner.Scan() {
+		counter++
+	}
 
-  return counter
+	return counter
 }
 
-func count_words(file_name string) (int) {
-  file, err := os.Open(file_name)
+func count_words(file_name string) int {
+	file, err := os.Open(file_name)
 
-  if err != nil { panic(err) }
+	if err != nil {
+		panic(err)
+	}
 
-  defer file.Close()
-  scanner := bufio.NewScanner(file)
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
 
-  counter := 0
+	counter := 0
 
-  scanner.Split(bufio.ScanWords)
+	scanner.Split(bufio.ScanWords)
 
-  for scanner.Scan() { counter++ }
+	for scanner.Scan() {
+		counter++
+	}
 
-  return counter
+	return counter
 }
