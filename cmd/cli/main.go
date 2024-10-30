@@ -11,22 +11,22 @@ func main() {
 	args := os.Args[1:]
 	args_len := len(args)
 
-  var filename string
+	var filename string
 
 	if args_len > 0 {
-    filename = args[args_len-1]
-  }
-  
-  cmds := []interfaces.Command{
-    command.NewCountLines(filename),
-    command.NewCountWords(filename),
-    command.NewByteCounter(filename),
-  }
+		filename = args[args_len-1]
+	}
 
-  parser := command.NewParser(cmds)
+	cmds := []interfaces.Command{
+		command.NewCountLines(filename),
+		command.NewCountWords(filename),
+		command.NewByteCounter(filename),
+	}
 
-  if err := parser.Parse(args); err != nil {
-    os.Stderr.WriteString(fmt.Sprintf("error: %v", err.Error()))
-    os.Exit(1)
-  }
+	parser := command.NewParser(cmds)
+
+	if err := parser.Parse(args); err != nil {
+		os.Stderr.WriteString(fmt.Sprintf("error: %v", err.Error()))
+		os.Exit(1)
+	}
 }

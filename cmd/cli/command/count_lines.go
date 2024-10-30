@@ -8,29 +8,31 @@ import (
 )
 
 type LineCounter struct {
-  fs *flag.FlagSet
-  filename string
+	fs       *flag.FlagSet
+	filename string
 }
 
 func NewCountLines(filename string) *LineCounter {
-  cmd := &LineCounter{
-    fs: flag.NewFlagSet("-l", flag.ContinueOnError),
-    filename: filename,
-  }
+	cmd := &LineCounter{
+		fs:       flag.NewFlagSet("-l", flag.ContinueOnError),
+		filename: filename,
+	}
 
-  return cmd
+	return cmd
 }
 
 func (cmd *LineCounter) Name() string {
-  return cmd.fs.Name()
+	return cmd.fs.Name()
 }
 
 func (cmd *LineCounter) ParseFlags(flags []string) error {
-  if len(flags) == 0 { return fmt.Errorf("missing flags") }
+	if len(flags) == 0 {
+		return fmt.Errorf("missing flags")
+	}
 
-  return cmd.fs.Parse(flags)
+	return cmd.fs.Parse(flags)
 }
 
 func (cmd *LineCounter) Run() error {
-  return services.Counter(cmd.filename, "Lines:", bufio.ScanLines)
+	return services.Counter(cmd.filename, "Lines:", bufio.ScanLines)
 }
