@@ -20,20 +20,20 @@ func main() {
 
   file_name := args[args_len - 1]
 
-  for count := 0; count < args_len - 1; count++ {
-    action, ok := cli_values[args[count]]
+  for count := 0; count <= args_len - 1; count++ {
+    action := cli_values[args[count]]
 
-    if !ok { continue }
+    execute_all := args_len - 1 == 0
 
-    if action == "ScanByte" {
+    if action == "ScanByte" || execute_all {
       byte_couter = count_bytes(file_name)
     }
 
-    if action == "ScanLine" {
+    if action == "ScanLine" || execute_all {
       line_counter = count_lines(file_name)
     }
 
-    if action == "ScanWords" {
+    if action == "ScanWords" || execute_all {
       word_counter = count_words(file_name)
     }
   }
