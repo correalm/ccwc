@@ -25,7 +25,7 @@ func main() {
 
 	parser := command.NewParser(cmds)
 
-	if err := parser.Parse(args); err != nil {
+	if err := parser.Parse(args, command.Help); err != nil {
 		os.Stderr.WriteString(fmt.Sprintf("error: %v", err.Error()))
 		os.Exit(1)
 	}

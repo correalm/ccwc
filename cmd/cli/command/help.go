@@ -2,7 +2,7 @@ package command
 
 import "fmt"
 
-func help() {
+func Help() {
 	help := "usage: [<flags>] filename"
 	fmt.Println(help)
 }

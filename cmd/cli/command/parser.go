@@ -8,15 +8,17 @@ type Parser struct {
 	commands []interfaces.Command
 }
 
+type helper func()
+
 func NewParser(commands []interfaces.Command) *Parser {
 	return &Parser{commands: commands}
 }
 
-func (p *Parser) Parse(args []string) error {
+func (p *Parser) Parse(args []string, helper helper) error {
 	args_len := len(args)
 
 	if args_len < 1 {
-		help()
+    helper()
 		return nil
 	}
 
