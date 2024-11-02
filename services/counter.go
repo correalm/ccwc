@@ -6,12 +6,12 @@ import (
 	"os"
 )
 
-func Counter(filename string, message string, split_func bufio.SplitFunc) error {
+func Counter(filename string, message string, split_func bufio.SplitFunc) (string, error) {
 	file, err := os.Open(filename)
 	defer file.Close()
 
 	if err != nil {
-		return fmt.Errorf("Error when open file %s: %v", filename, err)
+		return "", err
 	}
 
 	scanner := bufio.NewScanner(file)
@@ -22,7 +22,6 @@ func Counter(filename string, message string, split_func bufio.SplitFunc) error 
 	for scanner.Scan() {
 		counter++
 	}
-	fmt.Println(message, counter)
 
-	return nil
+	return fmt.Sprintf(message, counter), nil
 }
