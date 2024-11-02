@@ -23,5 +23,5 @@ func Counter(filename string, message string, split_func bufio.SplitFunc) (strin
 		counter++
 	}
 
-	return fmt.Sprintf(message, counter), nil
+	return fmt.Sprintf("%s %d", message, counter), nil
 }
