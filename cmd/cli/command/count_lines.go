@@ -34,5 +34,13 @@ func (cmd *LineCounter) ParseFlags(flags []string) error {
 }
 
 func (cmd *LineCounter) Run() error {
-	return services.Counter(cmd.filename, "Lines:", bufio.ScanLines)
+  message, err := services.Counter(cmd.filename, "Lines:", bufio.ScanLines)
+
+  if err != nil {
+    return err
+  }
+
+  fmt.Println(message)
+
+  return nil
 }
