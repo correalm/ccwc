@@ -34,13 +34,13 @@ func (cmd *WordCounter) ParseFlags(flags []string) error {
 }
 
 func (cmd *WordCounter) Run() error {
-  message, err := services.Counter(cmd.filename, "Words:", bufio.ScanWords)
+	message, err := services.Counter(cmd.filename, "Words:", bufio.ScanWords)
 
-  if err != nil {
-    return err
-  }
+	if err != nil {
+		return err
+	}
 
-  fmt.Println(message)
+	fmt.Println(message)
 
-  return nil
+	return nil
 }

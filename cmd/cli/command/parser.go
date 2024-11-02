@@ -18,7 +18,7 @@ func (p *Parser) Parse(args []string, helper helper) error {
 	args_len := len(args)
 
 	if args_len < 1 {
-    helper()
+		helper()
 		return nil
 	}
 

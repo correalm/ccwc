@@ -34,13 +34,13 @@ func (cmd *ByteCounter) ParseFlags(flags []string) error {
 }
 
 func (cmd *ByteCounter) Run() error {
-  message, err := services.Counter(cmd.filename, "Bytes:", bufio.ScanBytes)
+	message, err := services.Counter(cmd.filename, "Bytes:", bufio.ScanBytes)
 
-  if err != nil {
-    return err
-  }
+	if err != nil {
+		return err
+	}
 
-  fmt.Println(message)
+	fmt.Println(message)
 
-  return nil
+	return nil
 }
