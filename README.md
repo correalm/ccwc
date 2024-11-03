@@ -16,7 +16,8 @@
     `ccwc -b file_path`
   - Mix
     `ccwc -l -w file_path`
+  - Help
+    `ccwc -h`
 
 ### TODOS:
-    - Testing
     - Maybe use goroutines to improve the performance
