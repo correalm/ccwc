@@ -18,9 +18,11 @@ func main() {
 	}
 
 	cmds := []interfaces.Command{
+    // TODO: refac this names
 		command.NewCountLines(filename),
 		command.NewCountWords(filename),
 		command.NewByteCounter(filename),
+    command.NewHelp(),
 	}
 
 	parser := command.NewParser(cmds)
