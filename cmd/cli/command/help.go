@@ -6,33 +6,33 @@ import (
 )
 
 type Helper struct {
-  fs *flag.FlagSet
+	fs *flag.FlagSet
 }
 
 func NewHelp() *Helper {
-  cmd := &Helper{
-    fs: flag.NewFlagSet("-h", flag.ContinueOnError),
-  }
+	cmd := &Helper{
+		fs: flag.NewFlagSet("-h", flag.ContinueOnError),
+	}
 
-  return cmd
+	return cmd
 }
 
 func (cmd *Helper) Name() string {
-  return cmd.fs.Name()
+	return cmd.fs.Name()
 }
 
 func (cmd *Helper) ParseFlags(flags []string) error {
-  if len(flags) == 0 {
-    return fmt.Errorf("missing flags")
-  }
+	if len(flags) == 0 {
+		return fmt.Errorf("missing flags")
+	}
 
-  return cmd.fs.Parse(flags)
+	return cmd.fs.Parse(flags)
 }
 
 func (cmd *Helper) Run() error {
-  Help()
+	Help()
 
-  return nil
+	return nil
 }
 
 func Help() {
