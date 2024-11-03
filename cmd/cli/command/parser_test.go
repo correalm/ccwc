@@ -80,6 +80,19 @@ func TestParser(t *testing.T) {
 			helper:    func() {},
 			expected:  "Bytes: 342190\n",
 		},
+		{
+			name: "returns nothing when unknown arg is passed",
+			fields: fields{
+				commands: []interfaces.Command{
+					command.NewByteCounter(FILENAME),
+				},
+			},
+			args: args{
+				args: []string{FILENAME, "-z"},
+			},
+			wantError: false,
+			helper:    func() {},
+		},
 	}
 
 	for _, test := range tests {
