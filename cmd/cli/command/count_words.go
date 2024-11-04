@@ -12,7 +12,7 @@ type WordCounter struct {
 	filename string
 }
 
-func NewCountWords(filename string) *WordCounter {
+func NewWordCounter(filename string) *WordCounter {
 	cmd := &WordCounter{
 		fs:       flag.NewFlagSet("-w", flag.ContinueOnError),
 		filename: filename,

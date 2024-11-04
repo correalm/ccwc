@@ -42,7 +42,7 @@ func TestParser(t *testing.T) {
 			name: "returns the number of lines when l arg is passed",
 			fields: fields{
 				commands: []interfaces.Command{
-					command.NewCountLines(FILENAME),
+					command.NewLineCounter(FILENAME),
 				},
 			},
 			args: args{
@@ -56,7 +56,7 @@ func TestParser(t *testing.T) {
 			name: "returns the number of words when w arg is passed",
 			fields: fields{
 				commands: []interfaces.Command{
-					command.NewCountWords(FILENAME),
+					command.NewWordCounter(FILENAME),
 				},
 			},
 			args: args{
@@ -127,7 +127,7 @@ func TestParser(t *testing.T) {
 
 func TestHelpCallWithNoArgs(t *testing.T) {
 	parser := command.NewParser([]interfaces.Command{
-		command.NewCountLines(""),
+		command.NewLineCounter(""),
 	})
 
 	spy := &SpyHelper{}
@@ -145,7 +145,7 @@ func TestHelpCallWithNoArgs(t *testing.T) {
 
 func TestHelpCallWithArgs(t *testing.T) {
 	parser := command.NewParser([]interfaces.Command{
-		command.NewCountLines(""),
+		command.NewLineCounter(""),
 	})
 
 	spy := &SpyHelper{}
