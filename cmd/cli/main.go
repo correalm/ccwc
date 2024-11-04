@@ -17,19 +17,31 @@ func main() {
     os.Exit(1)
   }
 
-  filename := args[args_len-1]
+  path := args[args_len-1]
 
-	cmds := []interfaces.Command{
-		command.NewLineCounter(filename),
-		command.NewWordCounter(filename),
-		command.NewByteCounter(filename),
+  stat, err := os.Stat(path)
+
+  if os.IsNotExist(err) {
+    os.Stderr.WriteString(fmt.Sprintf("error: %v\n", err))
+    os.Exit(1)
+  }
+
+  if stat.IsDir() {
+    os.Stderr.WriteString(fmt.Sprintf("error: %s is a directory\n", stat.Name()))
+    os.Exit(1)
+  }
+
+  cmds := []interfaces.Command{
+    command.NewLineCounter(path),
+    command.NewWordCounter(path),
+    command.NewByteCounter(path),
     command.NewHelp(),
-	}
+  }
 
-	parser := command.NewParser(cmds)
+  parser := command.NewParser(cmds)
 
-	if err := parser.Parse(args, command.Help); err != nil {
-		os.Stderr.WriteString(fmt.Sprintf("error: %v", err.Error()))
-		os.Exit(1)
-	}
+  if err := parser.Parse(args, command.Help); err != nil {
+    os.Stderr.WriteString(fmt.Sprintf("error: %v", err.Error()))
+    os.Exit(1)
+  }
 }
