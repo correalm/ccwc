@@ -12,7 +12,7 @@ type LineCounter struct {
 	filename string
 }
 
-func NewCountLines(filename string) *LineCounter {
+func NewLineCounter(filename string) *LineCounter {
 	cmd := &LineCounter{
 		fs:       flag.NewFlagSet("-l", flag.ContinueOnError),
 		filename: filename,
