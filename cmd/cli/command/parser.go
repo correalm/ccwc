@@ -33,9 +33,9 @@ func (p *Parser) Parse(args []string, helper helper) error {
 				}
 			}
 		} else {
-      if cmd.Name() == NewHelp().Name() {
-        continue
-      }
+			if cmd.Name() == NewHelp().Name() {
+				continue
+			}
 
 			cmd.ParseFlags(args[1:])
 			cmd.Run()
