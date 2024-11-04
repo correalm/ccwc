@@ -8,14 +8,16 @@ import (
 )
 
 func main() {
-	args := os.Args[1:]
-	args_len := len(args)
+  args := os.Args[1:]
+  args_len := len(args)
 
-	var filename string
+  if args_len == 0 {
+    os.Stderr.WriteString(fmt.Sprint("No args provided\n"))
+    command.Help()
+    os.Exit(1)
+  }
 
-	if args_len > 0 {
-		filename = args[args_len-1]
-	}
+  filename := args[args_len-1]
 
 	cmds := []interfaces.Command{
 		command.NewLineCounter(filename),
