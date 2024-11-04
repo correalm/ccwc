@@ -44,7 +44,7 @@ func TestCounterService(t *testing.T) {
   for _, test := range tests {
     t.Run(test.name, func(t *testing.T) {
       result, err := services.Counter(test.filename, test.message, test.split_func)
-      expected := fmt.Sprintf(test.message, test.result)
+      expected := fmt.Sprintf("%s %d", test.message, test.result)
 
       if err != nil {
         t.Errorf("An error occur on counter: %v", err)
